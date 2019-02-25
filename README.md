@@ -7,7 +7,27 @@ DDL用于定义和管理数据库及数据库对象，包括CREATE,ALTER,DROP<br
     ```SQL
     CREATE DATABASE SchoolDB
     ```
-  
+2.1-2 创建表
+    ```SQL
+    USE SchoolDB
+    GO
+    CREATE TABLE Tstudent
+    ( StudentID varchar(10)PRIMARY KEY NOT NULL,
+      Sname varchar(10),
+      Sex char(2),
+      Birthday datetime,
+      Email varchar(40),
+      Class varchar(20)
+    )
+    ```
+3.1-3 修改表-添加Age字段
+    ```
+    ALTER TABLE Tstudent ADD Age varchar(4)
+    ```
+3.1-4 修改表-删除Age列
+    ```
+    ALTER TABLE Tstudent DROP COLUMN Age
+    ```
 
 2. DCL（Data Control Language）数据控制语言
 3. DML（Data Manipulation Language）数据操纵语言
