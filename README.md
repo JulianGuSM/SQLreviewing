@@ -3,12 +3,12 @@
 ## T-SQL语句类型
 1. DDL（Data Defintion Language）数据定义语言
 DDL用于定义和管理数据库及数据库对象，包括CREATE,ALTER,DROP<br>
-  1.1 创建数据库<br>
-```SQL
+    1.1 创建数据库<br>
+    ```SQL
     CREATE DATABASE SchoolDB
-```
-  1.2 创建表<br>
-```SQL
+    ```
+    1.2 创建表<br>
+    ```SQL
     USE SchoolDB
     GO
     CREATE TABLE Tstudent
@@ -19,7 +19,7 @@ DDL用于定义和管理数据库及数据库对象，包括CREATE,ALTER,DROP<br
       Email varchar(40),
       Class varchar(20)
     )
-```
+    ```
   3.  修改表-添加Age字段<br>
     ```SQL
     ALTER TABLE Tstudent ADD Age varchar(4)
