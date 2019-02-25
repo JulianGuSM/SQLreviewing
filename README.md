@@ -44,4 +44,21 @@
     GRANT ALTER ON Tstudent TO public
     DENY DELETE ON Tstudent TO public
     ```
-3. DML（Data Manipulation Language）数据操纵语言
+    2.2 使用REVOKE回收ALTER权限和拒绝DELETE权限
+    ```sql
+    REVOKE ALTER ON Tstudent TO public
+    REVOKE DELETE ON Tstudent TO public
+    ```
+3. DML（Data Manipulation Language）数据操纵语言  
+    DML用于检索和删除表或者视图等对象的数据，包括对数据的INSERT，DELETE，UPDATE,SELECT
+    <br>
+    1. INSERT 插入行(关键字：INSERT、INTO、VALUES)
+    ```sql
+    INSERT INTO Tstudent(StudentID,Sname,Sex,Birthday,Email,Class)
+    VALUES('0000000001','顾善明','男','1999-08-08','gu@163.com','计算机科学')
+    ```
+    上面的语句是标准的ANSI标准语句，每次只能插入一行,若要向表中所有字段都插入数据，则可以
+    省略Colum_list，下面的语句可以达到同样的效果
+    ```sql
+    INSERT INTO Tstudent VALUES('0000000001','顾善明','男','1999-08-08','gu@163.com','计算机科学')
+    ```
