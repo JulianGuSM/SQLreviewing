@@ -7,7 +7,7 @@ DDL用于定义和管理数据库及数据库对象，包括CREATE,ALTER,DROP<br
     ```SQL
     CREATE DATABASE SchoolDB
     ```
-2.1-2 创建表<br>
+1.1-2 创建表<br>
     ```SQL
     USE SchoolDB
     GO
@@ -20,11 +20,11 @@ DDL用于定义和管理数据库及数据库对象，包括CREATE,ALTER,DROP<br
       Class varchar(20)
     )
     ```
-3.1-3 修改表-添加Age字段<br>
+1.1-3 修改表-添加Age字段<br>
     ```
     ALTER TABLE Tstudent ADD Age varchar(4)
     ```
-3.1-4 修改表-删除Age列<br>
+1.1-4 修改表-删除Age列<br>
     ```
     ALTER TABLE Tstudent DROP COLUMN Age
     ```
