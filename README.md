@@ -36,7 +36,7 @@
     DCL语句用来控制对数据库和数据库对象的访问，主要是权限控制，包括GRANT,DENY,REVOKE<br>
     2.1 对public经行授权  
         ```sql
-       GRANT ALTER ON Tstudent TO public
-       DENY DELETE ON Tstudent TO public
+        GRANT ALTER ON Tstudent TO public
+        DENY DELETE ON Tstudent TO public
         ```
 3. DML（Data Manipulation Language）数据操纵语言
