@@ -20,11 +20,11 @@ DDL用于定义和管理数据库及数据库对象，包括CREATE,ALTER,DROP<br
       Class varchar(20)
     )
     ```
-  3.  修改表-添加Age字段<br>
+    1.3  修改表-添加Age字段<br>
     ```SQL
     ALTER TABLE Tstudent ADD Age varchar(4)
     ```
-  4. 修改表-删除Age列<br>
+    1.4 修改表-删除Age列<br>
     ```
     ALTER TABLE Tstudent DROP COLUMN Age
     ```
