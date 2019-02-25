@@ -38,6 +38,7 @@
         + GRANT:授予权限
         + DENY:拒绝权限(优先权高于GRANT)
         + REVOKE:消除GRANT,DENY的影响，移除权限
+      
     2.1 对public经行授权  
     ```sql
     GRANT ALTER ON Tstudent TO public
