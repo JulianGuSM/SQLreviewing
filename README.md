@@ -34,7 +34,7 @@
     ```
 2. DCL（Data Control Language）数据控制语言  
     DCL语句用来控制对数据库和数据库对象的访问，主要是权限控制，包括GRANT,DENY,REVOKE<br>
-        这三种语句授权的状态为：  
+        + 这三种语句授权的状态为：  
             + GRANT:授予权限
             + DENY:拒绝权限(优先权高于GRANT)
             + REVOKE:消除GRANT,DENY的影响，移除权限
