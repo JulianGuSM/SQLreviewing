@@ -166,4 +166,20 @@
 ## 数据类型
 1. 字符串类型
    字符串类型用于存储汉字、字母、数字符号和其他符号，包括varchar,char和text等。
+      <br>
+   1. **<font size="3" color="##DA70D6" >char</font>** (定长字符串)
+   > 定长形式为char[(n)]，n的取值范围1~8000，不写 n 默认n=1，长度超过n时将被截断，不足    n时将被空格填充
+   2. **<font size="3" color="##DA70D6" >varchar</font>** (变长字符串)
+    > 结构与 **<font size="3" color="##DA70D6" >char</font>** 结构一样，区别在于长度小于 n 时，不足 n 的部分不被空格填充，占用的字节长度等于输入长度
+   3.  **<font size="3" color="##DA70D6" >text</font>** 
+    >  **<font size="3" color="##DA70D6" >text</font>** 数据类型用于存储数据量非常庞大的字符文本数据，**<font size="3" color="##DA70D6" >char</font>**  ，**<font size="3" color="##DA70D6" >varchar</font>** 最多可存储8000字节数据，超过时可以用 **<font size="3" color="##DA70D6" >text</font>** 类型。该类型占用字节长度可变
+2. 日期时间类型
+   -  datatime
+    > 默认显示格式YYYY-MM-DD hh:mm:ss:n* 
+    n* 代表 0~000之间的3位数
+   - date
+    > 存储日期不存储时间，占用3个字节，默认显示格式YYYY-MM-DD
+   - time
+    > 存储一个24小时制的时间，占用3~5个字节，默认格式为hh:mm:ss:n*。 n*默认位数为7位
+3. 数值类型
    
