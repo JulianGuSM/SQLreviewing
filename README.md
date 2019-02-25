@@ -1,8 +1,8 @@
 # SQLreviewing
 
 ## T-SQL语句类型
-1. ###DDL（Data Defintion Language）数据定义语言
-DDL用于定义和管理数据库及数据库对象，包括CREATE,ALTER,DROP<br>
+1. DDL（Data Defintion Language）数据定义语言
+    DDL用于定义和管理数据库及数据库对象，包括CREATE,ALTER,DROP<br>
     1.1 创建数据库<br>
     ```SQL
     CREATE DATABASE SchoolDB
@@ -32,11 +32,15 @@ DDL用于定义和管理数据库及数据库对象，包括CREATE,ALTER,DROP<br
     ```sql
     DROP TABLE Tstudent
     ```
-2. ###DCL（Data Control Language）数据控制语言
+2. DCL（Data Control Language）数据控制语言
     DCL语句用来控制对数据库和数据库对象的访问，主要是权限控制，包括GRANT,DENY,REVOKE<br>
-    这三种语句授权的状态为：<br>
-        + GRANT:授予权限
-        + DENY:拒绝权限(优先权高于GRANT)
-        + REVOKE:消除GRANT,DENY的影响，移除权限
-    2.1 
+        这三种语句授权的状态为：<br>
+            + GRANT:授予权限
+            + DENY:拒绝权限(优先权高于GRANT)
+            + REVOKE:消除GRANT,DENY的影响，移除权限
+    2.1 对public经行授权
+       ```sql
+       GRANT ALTER ON Tstudent TO public
+       DENY DELETE ON Tstudent TO public
+       ```
 3. DML（Data Manipulation Language）数据操纵语言
