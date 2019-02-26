@@ -100,7 +100,7 @@
     ```
     不使用WHERE将删除整个表
      ****
-##T-SQL语法要素
+## T-SQL语法要素
 1. SQL语句的批处理符号GO
     GO必须独占一行
     ```sql
@@ -125,7 +125,7 @@
     CREATE TABLE #t(Tname nvarchar(10),Tage int)
     CREATE TABLE ##teacher(Tname nvarchar(10),Tage int)
     ```
-##变量
+## 变量
 变量分为局部变量和全局变量。局部变量名称开头必须是@，作用域仅限于一个批处理语句中
 使用 **<font size="4" color="#DC143C" >DECLARE</font>** 定义局部变量，同时指定变量的数据类型，一次性定义多个变量时在每个
 变量之间用“,”隔开
@@ -182,4 +182,103 @@
    - time
     > 存储一个24小时制的时间，占用3~5个字节，默认格式为hh:mm:ss:n*。 n*默认位数为7位
 3. 数值类型
+4. 运算符
+    - ALL
+  如果都为TRUE，那么就为TRUE
+  列如，4>ALL(3,2,1)的结果是true，4>ALL（3，2，5）的结果是false
+    - AND
+  如果两个表达式都为TRUE，那么就是TRUE。
+  例如，5>4 AND 5>3的结果是TRUE； 5>3 AND 5>7的结果为false
+    - ANY、SOME
+  如果比较中任何一个为TRUE，那么就为TRUE
+  例如5>ANY(3,6,8)的结果为TRUE，因为5大于3为TRUE
+    - BETWEEN
+  如果值在某个范围之内，那么就为TRUE
+  例如，6 BETWEEN 3 AND 9结果为TRUE，6 BETWEEN 3 AND 5结果为FALSE
+    - EXISTS
+  如果子查询包含一些行，那么就为TRUE
+    - IN
+  如果值等于表达式列表里的一个，那么就为TRUE。
+  例如，3 IN （2，3，8）的结果为TRUE， A IN (A,B,C)结果为TRUE,3 IN (2,4,5)结果为FALSE
+    - LIKE
+  如果值与一种模式相匹配，那么结果就是TRUE
+  在like中会使用“ **_**”, “ **%**”等使用通配符，“ **_**” 代表一个未知字符，“ **%**”代表任意字符和字符串
+  ，例如对LIKE '_立刚'来说，如果是“a立刚”，“韩立刚”，“张立刚”结果都是 TRUE
+    - NOT
+  对返回结果取反
+    - OR
+  相当于 ||
+  5. 聚合函数
+   COUNT(), AVG(), SUM(), MIN(), MAX()
+  6. 数值函数
+       1. ROUND(value)
+   对值进行四舍五入
+       2. FLOOR(value)
+   地板函数，取小于或等于value的最大整数
+       3. CEILING(value)
+   天花板函数，取大于或等于value的最小整数
+       4. RAND
+   取RAND的双边整数值
+      ```sql
+      SELECT CEILING(RAND()*100 - 1) AS 法一
+              FLOOR(RAND()*101) AS 法二
+      ```
+  7. 字符串函数
+       1. 使用LOWER()和UPPER()改变字符串大小写
+      ```sql
+      SELECT LOWER('ABcde'),UPPER('AbcdE')
+      ```
+       2. 使用LEN()获取字符串长度
+      ```sql
+      SELECT LEN('ADBCD 韩立刚')
+      ```
+       3. 使用LEFT(),RIGHT()和SUBSTRING()截取字符串
+   LEFT(string，n)从左边开始截取n个字符
+   RIGHT(string ， n)是从右边开始截取n个字符
+   SUBSTRING(string，start，length)将对string从start位置开始截取length个字符，start表示开始截取的位置，length表示截取的长度 
+       4. LTRIM()删除左端空格，RTRIM()删除右端空格
+       5. CHARINDEX()查找字符串 
+       6. REPLACE(string1，string2，string3)表示用string1中的字符串string2替换为string3，如果string2不是string1中的字符串则不能替换
+       7. STUFF(string1，start，length，string2)表示从字符串string1的start位置开始删除length个字符，然后在删除的位置插入string2
+       8. SPACE(n)返回指定数量的空格
+       9. REPLICATE(string，n)重复字符串，n是重复次数
+  8. 日期时间函数
+       1. 使用GETDATE(),CURRENT_TIMESTAMP函数获取当前日期和时间
+       2. 使用YEAR(),MONTH(),DAY()获取给定时间的年月日
+       3. 使用DATEADD()获取加上指定日期时间后的新日期时间
+      ```SQL
+      SELECT DATEADD(yy,2,GETDATE()) --加两年
+      SELECT DATEADD(qq,2,GETDATE()) --加两季度
+      SELECT DATEADD(mm,2,GETDATE()) --加两月
+      SELECT DATEADD(wk,2,GETDATE()) --加两周
+      SELECT DATEADD(dy,2,GETDATE()) --加两日
+      SELECT DATEADD(dd,2,GETDATE()) --加两日
+      SELECT DATEADD(dw,2,GETDATE()) --加两日
+      -- number 也可以是负数，表示减去指定时间
+      ```
+       4. 使用DATEDIFF(datetype,startdate,enddate)获取时间差
+       5. 使用DATENAME(),DATEPART()得到给定日期的指定部分和指定部分的整数值
+ 9. 数据类型转换函数
+ 10. 控制NULL的常用函数
+ 11. 条件判断语句IF...ELSE和CASE
+ 12. 循环语句
+## 查询语句
+1. 简单查询逻辑处理过程
+    ```sql
+    SELECT Class，COUNT(*) AS 人数
+    FROM dbo.Tstudent
+    WHERE Class IN ('网络班','开发班')
+    GROUP BY Class
+    ORDER BY 人数
+    ```
+     ****
+      **第一阶段：使用FROM确定输入表**
+      该步骤先识别被查询的表，如果指定了表操作符
+
+2. 
+
+
+      
+    
+    
    
