@@ -273,10 +273,86 @@
     ```
      ****
       **第一阶段：使用FROM确定输入表**
-      该步骤先识别被查询的表，如果指定了表操作符
+      该步骤先识别被查询的表，如果指定了表操作符,则还要按条件处理这些操作符。
+      上面的语句只对一张表进行操作，在语句执行的开始，确定Tstudent表是将要进行操作的表，
+      并将Tstudent的所有行输出到虚拟表1中，作为下一阶段的输入表
+       **第二阶段：使用WHERE筛选数据**
+       在该阶段，将对虚拟表1的所有行使用WHERE筛选器，只有符合Class为‘网络班’和‘开发班’条件的行才会放入到虚拟表2
+       **第三阶段：进行数据分组**
+       在该阶段，根据GROUP BY子句中指定的分组列Class对虚拟表2进行分组，开发班分为一个组，网络班分为一个组
+       得到虚拟表3
+       **第四阶段：使用SELECT列表筛选列**
+       从虚拟表3中筛选SELECT后的列Class，并得到一个计算列COUNT（*）统计按班级分组后的班级人数，取两列的结果集作为虚拟表4
+       **第五阶段：使用ORDER BY子句排序查询结果**
+       本例中对别名“人数”代表计算列COUNT（*）进行默认的升序排序
 
-2. 
-
+2. 使用WHERE筛选行
+   当WHERE子句中使用了多个逻辑运算符时，计算顺序依次为：NOT，AND，OR
+3. 使用IN指定条件列表，列表中的值以“ ， ”隔开
+4. 使用 **LIKE** 关键字进行模糊匹配
+  > % 代表任意字符串
+  > _ 代表单个任意字符
+  > [] 指定范围（如[韩，马，郭]）内的任意单个字符
+  [^] 不在指定范围内的任意单个字符
+   ****
+   使用%查询“许”姓学生
+   ```sql
+   SELECT * FROM Tstudent WHERE Sname LIKE '许%'
+   ```
+   查询姓名中第二个字为“冰”的学生
+  ```sql
+    SELECT * FROM Tstudent WHERE Sname LIKE '_冰%'
+  ```
+  查询姓名中含有“许”“发”“冰”的学生
+ ```sql
+ SELECT * FROM Tstudent WHERE Sname LIKE '%[许，发，冰]%'
+ ```
+ 使用NOT求反，查询不姓许的学生
+  ```sql
+  SELECT * FROM Tstudent WHERE Sname NOT LIKE '许%'
+  ```
+5. 使用别名
+   1. 定义表别名后，在语句中对该表的引用必须使用别名，而不能使用原表名
+   2. 引用别名时注意查询的逻辑处理过程
+6. 使用ORDER BY子句对结果排序
+   默认升序（ASC），降序（DESC）
+   1. 按单列排序
+      ```SQL
+      SELECT StudentID，subJectID， mark FROM Tscore ORDER BY mark
+      ```
+      指定列别名进行排序
+      ```SQL
+      SELECT StudentID，subJectID， mark AS 分数 FROM Tscore ORDER BY 分数
+      ```
+      使用数字3代表mark
+      ```SQL
+      SELECT StudentID，subJectID， mark FROM Tscore ORDER BY 3
+      ```
+   2. 按多列排序
+      按多列排序时，列之间用 “，” 隔开。当指定的第一个排序列值相同时，将对相同列值的行按照第二个指定列进行排序，对指定多个排序列以此类推
+      下面的语句指定先按mark排序，对mark相等的行按StudentID排序
+      ```SQL
+      SELECT StudentID，subJectID， mark FROM Tscore ORDER BY mark,StudentID
+      ```
+      若在指定多列排序时指定排序方式，则需要在每个排序列后指定ASC或DESC
+      ```SQL
+      SELECT StudentID，subJectID， mark FROM Tscore ORDER BY mark DESC,StudentID
+      ```
+   3. 使用选择列之外的列排序
+      ORDER BY子句可以包括未出现在SELECT选择列表中的列。
+      例如下面的语句只查询StudentID和subJectID列，但仍按mark升序排序 
+      ```SQL
+      SELECT StudentID，subJectID FROM Tscore ORDER BY mark
+      ```
+      但是如果指定了SELECT DISTINCT或者包含GROUP BY 子句，则排序列必须包含在选择列表中
+      ```SQL
+      SELECT DISTINCT StudentID，subJectID FROM Tscore ORDER BY mark --报错
+      SELECT StudentID，SUM(mark) FROM Tscore GROUP BY StudentID ORDER BY mark --报错
+      ```
+7. 使用TOP限制结果集
+   1. TOP 不与 ORDER BY一起使用返回的数据行时未排序状态下的数据
+   2. TOP 与 ORDER BY一起使用
+   
 
       
     
