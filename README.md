@@ -272,18 +272,18 @@
     ORDER BY 人数
     ```
      ****
-      **第一阶段：使用FROM确定输入表**
+    **第一阶段：使用FROM确定输入表**
       该步骤先识别被查询的表，如果指定了表操作符,则还要按条件处理这些操作符。
       上面的语句只对一张表进行操作，在语句执行的开始，确定Tstudent表是将要进行操作的表，
       并将Tstudent的所有行输出到虚拟表1中，作为下一阶段的输入表
-       **第二阶段：使用WHERE筛选数据**
+    **第二阶段：使用WHERE筛选数据**
        在该阶段，将对虚拟表1的所有行使用WHERE筛选器，只有符合Class为‘网络班’和‘开发班’条件的行才会放入到虚拟表2
-       **第三阶段：进行数据分组**
+    **第三阶段：进行数据分组**
        在该阶段，根据GROUP BY子句中指定的分组列Class对虚拟表2进行分组，开发班分为一个组，网络班分为一个组
        得到虚拟表3
-       **第四阶段：使用SELECT列表筛选列**
+    **第四阶段：使用SELECT列表筛选列**
        从虚拟表3中筛选SELECT后的列Class，并得到一个计算列COUNT（*）统计按班级分组后的班级人数，取两列的结果集作为虚拟表4
-       **第五阶段：使用ORDER BY子句排序查询结果**
+    **第五阶段：使用ORDER BY子句排序查询结果**
        本例中对别名“人数”代表计算列COUNT（*）进行默认的升序排序
 
 2. 使用WHERE筛选行
@@ -352,9 +352,22 @@
 7. 使用TOP限制结果集
    1. TOP 不与 ORDER BY一起使用返回的数据行时未排序状态下的数据
    2. TOP 与 ORDER BY一起使用
-   
-
-      
-    
-    
-   
+8. 使用DISTINCT消除重复行
+## 多表联接查询和数据汇总
+1. 联接基础知识
+   创造多表查询的环境
+    ```sql
+    CREATE DATABASE joindb
+    GO
+    USE joindb 
+    GO
+    CREATE TABLE Student ( StudentID int, Sname nvarchar ( 10 ), Sex nchar ( 1 ) )
+    INSERT Student VALUES(1,'韩立刚','男'),(2,'王景正','男'),(3,'郭淑丽','女'),(4,'韩旭','女'),(5,'孟晓飞','男');
+    CREATE TABLE Score (StudentID int,Subjectname nvarchar(20), Mark DECIMAL)
+    INSERT Score VALUES (1,'英语',89),(1,'数学',59),(2,'英语',79),(2,'数学',86),(3,'英语',57),(3,'数学',67),(6,'英语',88),(6,'数学',83);
+    ```
+2. 在FROM 子句中联接
+   语法格式：FROM table_1 join_type table_2 [ON join_condition]
+   将table_1和table_2通过联接条件join_condition联接在一起，联接条件是许可的
+   join_type分为 **交叉连接**、 **内连接**、 **外连接**
+   不写联接条件默认交叉连接
