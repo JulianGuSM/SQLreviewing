@@ -371,3 +371,24 @@
    将table_1和table_2通过联接条件join_condition联接在一起，联接条件是许可的
    join_type分为 **交叉连接**、 **内连接**、 **外连接**
    不写联接条件默认交叉连接
+3. 在WHERE 子句中联接
+    ```sql
+    SELECT Sname，Mark
+    FROM Student，Score
+    WHERE Student.StudentID = Score.StudentID
+    ``` 
+    WHERE只支持交叉联接，内连接不支持外连接
+4. 交叉联接
+   标准的交叉连接语句：
+    ```sql
+    SELECT Sname,Mark
+    FROM Student CROSS JOIN Score
+    ```
+    查询结果有5*8（笛卡尔乘积） = 40行
+    使用交叉连接占用资源大，谨慎使用
+5. 内连接
+   先经过笛卡尔乘积然后在笛卡尔乘积虚拟表中使用ON筛选器，最终得到内连接的查询记录
+    ```sql
+    SELECT * FROM Student INNER JOIN Score ON Student.StudentID = Score.StudentID
+    ```
+    INNER可以省略，默认内连接
